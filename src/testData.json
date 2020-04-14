@@ -1,0 +1,24 @@
+{
+  "quotes": [
+    {
+      "id": 1,
+      "who": "Dr. Seuss",
+      "what": "Don’t cry because it’s over, smile because it happened."
+    },
+    {
+      "id": 2,
+      "who": "Oscar Wilde",
+      "what": "Be yourself; everyone else is already taken."
+    },
+    {
+      "id": 3,
+      "who": "Albert Camus",
+      "what": "Don’t walk behind me; I may not lead. Don’t walk in front of me; I may not follow. Just walk beside me and be my friend."
+    },
+    {
+      "id": 4,
+      "who": "Henry David Thoreau",
+      "what": "Success usually comes to those who are too busy to be looking for it."
+    }
+  ]
+}
