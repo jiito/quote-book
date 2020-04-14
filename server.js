@@ -7,10 +7,15 @@ const server = express();
 server.use('/api', apiRouter);
 server.use(express.static('public'));
 
+// use ejs
+server.set('view engine', 'ejs');
+
 server.get('/', (req, res) => {
-  res.send('Get request on / route');
+  res.render('index', {
+    title: 'Quote Book',
+  });
 });
 
-server.listen(8000, () => {
-  console.info('Express listening on port 8000...');
+server.listen(8080, () => {
+  console.info('Express listening on port 8080...');
 });
