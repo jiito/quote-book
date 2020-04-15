@@ -1,13 +1,25 @@
 import React from 'react';
 import Navigation from './Navigation';
+import Quote from './quote';
 
-const App = () => {
-  return (
-    <div>
-      <Navigation />
-      <h2 className="text-center">Welcome to the Quote Book!</h2>
-    </div>
-  );
-};
+class App extends React.Component {
+  state = {
+    pageHeader: 'Quotebook',
+  };
+
+  render() {
+    return (
+      <div>
+        <Navigation />
+        <h2 className="text-center">{this.state.pageHeader}!</h2>
+        <div>
+          {this.props.quotes.map((contest) => (
+            <Quote {...contest} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+}
 
 export default App;
