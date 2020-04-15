@@ -105,3 +105,4 @@ dist
 
 # webpack bundle
 public
+public/bundle.js
