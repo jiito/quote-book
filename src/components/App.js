@@ -6,7 +6,7 @@ import Quote from './Quote';
 class App extends React.Component {
   state = {
     pageHeader: 'Quotebook',
-    quotes: [],
+    quotes: this.props.initialData,
   };
 
   // eslint-disable-next-line class-methods-use-this
