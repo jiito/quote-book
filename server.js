@@ -1,7 +1,9 @@
 import express from 'express';
-import apiRouter from './api';
-import sassMiddleware from 'node-sass-middleware';
 import path from 'path';
+import sassMiddleware from 'node-sass-middleware';
+import config from './config';
+import apiRouter from './api';
+import serverRender from './serverRender';
 
 const server = express();
 
@@ -21,11 +23,16 @@ server.use(express.static('public'));
 server.set('view engine', 'ejs');
 
 server.get('/', (req, res) => {
-  res.render('index', {
-    title: 'Quote Book',
-  });
+  serverRender()
+    .then((content) => {
+      // feed ejs template the content
+      res.render('index', {
+        content,
+      });
+    })
+    .catch(console.error);
 });
 
-server.listen(8080, () => {
+server.listen(config.port, config.host, () => {
   console.info('Express listening on port 8080...');
 });
