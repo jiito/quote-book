@@ -3,8 +3,8 @@ import Quote from './Quote';
 
 const QuoteList = ({ onQuoteClick, quotes }) => (
   <div className="QuoteList">
-    {quotes.map((quote) => (
-      <Quote key={quote.id} onClick={onQuoteClick} {...quote} />
+    {Object.keys(quotes).map((quoteId) => (
+      <Quote key={quoteId} onClick={onQuoteClick} {...quotes[quoteId]} />
     ))}
   </div>
 );
