@@ -3,6 +3,9 @@ import axios from 'axios';
 import Navigation from './Navigation';
 import QuoteList from './QuoteList';
 
+// implementing the history routing method
+const pushState = (obj, url) => window.history.pushState(obj, '', url);
+
 class App extends React.Component {
   state = {
     pageHeader: 'Quotebook',
@@ -11,12 +14,16 @@ class App extends React.Component {
 
   componentDidMount() {}
 
+  fetchQuote = (quoteId) => {
+    pushState({ currentQuoteId: quoteId }, `/quote/${quoteId}`);
+  };
+
   render() {
     return (
       <div className="App">
         <Navigation />
         <h2 className="text-center">{this.state.pageHeader}!</h2>
-        <QuoteList quotes={this.state.quotes} />
+        <QuoteList onQuoteClick={this.fetchQuote} quotes={this.state.quotes} />
       </div>
     );
   }

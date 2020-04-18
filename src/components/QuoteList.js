@@ -1,10 +1,10 @@
 import React from 'react';
 import Quote from './Quote';
 
-const QuoteList = ({ quotes }) => (
+const QuoteList = ({ onQuoteClick, quotes }) => (
   <div className="QuoteList">
     {quotes.map((quote) => (
-      <Quote key={quote.id} {...quote} />
+      <Quote key={quote.id} onClick={onQuoteClick} {...quote} />
     ))}
   </div>
 );

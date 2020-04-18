@@ -4,7 +4,7 @@ class Quote extends Component {
   state = {};
 
   handleClick = () => {
-    console.log(this.props.who);
+    this.props.onClick(this.props.id);
   };
 
   render() {
