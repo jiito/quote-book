@@ -9,7 +9,7 @@ class Quote extends Component {
 
   render() {
     return (
-      <div className="Quote" onClick={this.handleClick}>
+      <div className="link Quote" onClick={this.handleClick}>
         <div className="quote-author">{this.props.who}</div>
         <div className="quote-string">{this.props.what}</div>
       </div>
