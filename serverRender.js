@@ -8,8 +8,9 @@ import config from './config';
 
 const serverRender = () =>
   axios.get(`${config.serverUrl}/api/quotes`).then((resp) => {
+    console.log(resp.data);
     return {
-      initialMarkup: ReactDOMServer.renderToString(<App initialQuotes={resp.data.quotes} />),
+      initialMarkup: ReactDOMServer.renderToString(<App initialData={resp.data} />),
       initialData: resp.data,
     };
   });
