@@ -24,15 +24,16 @@ server.set('view engine', 'ejs');
 
 server.get('/', (req, res) => {
   serverRender()
-    .then((content) => {
+    .then(({ initialMarkup, initialData }) => {
       // feed ejs template the content
       res.render('index', {
-        content,
+        content: initialMarkup,
+        data: initialData,
       });
     })
     .catch(console.error);
 });
 
 server.listen(config.port, config.host, () => {
-  console.info('Express listening on port 8080...');
+  console.info(`Express listening on port ${config.port}...`);
 });
