@@ -14,4 +14,12 @@ router.get('/quotes', (req, res) => {
   });
 });
 
+router.get('/quotes/:quoteID', (req, res) => {
+  let quote = quotes[req.params.quoteID];
+  quote.description =
+    'Lorem ipsum this is a gibberish description to test that the api is working ';
+
+  res.send(quote);
+});
+
 export default router;
