@@ -5,7 +5,11 @@ const router = express.Router();
 
 router.get('/quotes', (req, res) => {
   res.send({
-    quotes: data.quotes,
+    // map quotes to object
+    quotes: data.quotes.reduce((obj, quote) => {
+      obj[quote.id] = quote;
+      return obj;
+    }, {}),
   });
 });
 
