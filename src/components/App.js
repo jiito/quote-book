@@ -9,13 +9,14 @@ const pushState = (obj, url) => window.history.pushState(obj, '', url);
 class App extends React.Component {
   state = {
     pageHeader: 'Quotebook',
-    quotes: this.props.initialData,
+    quotes: this.props.initialQuotes,
   };
 
   componentDidMount() {}
 
   fetchQuote = (quoteId) => {
     pushState({ currentQuoteId: quoteId }, `/quote/${quoteId}`);
+    // look up quote
   };
 
   render() {
