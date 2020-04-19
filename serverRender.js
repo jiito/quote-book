@@ -6,13 +6,45 @@ import App from './src/components/App';
 import axios from 'axios';
 import config from './config';
 
-const serverRender = () =>
-  axios.get(`${config.serverUrl}/api/quotes`).then((resp) => {
-    console.log(resp.data);
+const getApiUrl = (quoteID) => {
+  if (quoteID) {
+    return `${config.serverUrl}/api/quotes/${quoteID}`;
+  }
+  return `${config.serverUrl}/api/quotes`;
+};
+
+const getInitialData = (quoteID, apiData) => {
+  if (quoteID) {
     return {
-      initialMarkup: ReactDOMServer.renderToString(<App initialData={resp.data} />),
-      initialData: resp.data,
+      currentQuoteId: apiData.id,
+      quotes: {
+        [apiData.id]: apiData,
+      },
+    };
+  }
+
+  return {
+    quotes: apiData.quotes,
+  };
+};
+
+const serverRender = (quoteID) =>
+  axios.get(getApiUrl(quoteID)).then((resp) => {
+    const initialData = getInitialData(quoteID, resp.data);
+    console.log(initialData);
+    return {
+      initialMarkup: ReactDOMServer.renderToString(<App initialData={initialData} />),
+      initialData,
     };
   });
+
+// axios.get(getApiUrl(quoteID)).then((resp) => {
+//   const initialData = getInitialData(quoteID, resp.data);
+//   console.log(initialData);
+//   return {
+//     initialMarkup: ReactDOMServer.renderToString(<App initialData={initialData} />),
+//     initialData,
+//   };
+// });
 
 export default serverRender;
