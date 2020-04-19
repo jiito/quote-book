@@ -22,8 +22,9 @@ server.use(express.static('public'));
 // use ejs
 server.set('view engine', 'ejs');
 
-server.get('/', (req, res) => {
-  serverRender()
+server.get(['/', '/quote/:quoteID'], (req, res) => {
+  console.log(req.params.quoteID);
+  serverRender(req.params.quoteID)
     .then(({ initialMarkup, initialData }) => {
       // feed ejs template the content
       res.render('index', {
@@ -35,5 +36,5 @@ server.get('/', (req, res) => {
 });
 
 server.listen(config.port, config.host, () => {
-  console.info(`Express listening on port ${config.port}...`);
+  console.info(` Express listening on port ${config.port}...`);
 });
