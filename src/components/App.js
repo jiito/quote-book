@@ -27,6 +27,17 @@ class App extends React.Component {
     });
   };
 
+  fetchQuoteList = () => {
+    pushState({ currentQuoteId: null }, `/`);
+    // look up quote
+    api.fetchQuoteList().then((quoteList) => {
+      this.setState({
+        currentQuoteId: null,
+        quotes: quoteList,
+      });
+    });
+  };
+
   pageHeader() {
     if (this.state.currentQuoteId) {
       return this.currentQuote().who;
@@ -40,7 +51,13 @@ class App extends React.Component {
 
   currentContent() {
     if (this.state.currentQuoteId) {
-      return <Quote {...this.currentQuote()} />;
+      return (
+        <Quote
+          {...this.currentQuote()}
+          currentQuote={this.state.currentQuoteId}
+          onHomeClick={this.fetchQuoteList}
+        />
+      );
     }
     return <QuoteList onQuoteClick={this.fetchQuote} quotes={this.state.quotes} />;
   }

@@ -7,11 +7,25 @@ class Quote extends Component {
     this.props.onClick(this.props.id);
   };
 
+  linkHome() {
+    if (this.props.currentQuote) {
+      return (
+        <div className="link link-home" onClick={this.props.onHomeClick}>
+          Return Home
+        </div>
+      );
+    }
+    return null;
+  }
+
   render() {
     return (
-      <div className="link Quote" onClick={this.handleClick}>
-        <div className="quote-author">{this.props.who}</div>
-        <div className="quote-string">{this.props.what}</div>
+      <div>
+        <div className="link Quote" onClick={this.handleClick}>
+          <div className="quote-author">{this.props.who}</div>
+          <div className="quote-string">{this.props.what}</div>
+        </div>
+        {this.linkHome()}
       </div>
     );
   }
