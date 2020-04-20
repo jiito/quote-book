@@ -7,11 +7,21 @@ import * as api from '../api';
 
 // implementing the history routing method
 const pushState = (obj, url) => window.history.pushState(obj, '', url);
+const onPopState = (handler) => {
+  window.onpopstate = handler;
+};
 
 class App extends React.Component {
   state = this.props.initialData;
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log('Mounted');
+    onPopState((event) => {
+      this.setState({
+        currentQuoteId: (event.state || {}).currentQuoteId,
+      });
+    });
+  }
 
   fetchQuote = (quoteId) => {
     pushState({ currentQuoteId: quoteId }, `/quote/${quoteId}`);
@@ -40,7 +50,7 @@ class App extends React.Component {
 
   pageHeader() {
     if (this.state.currentQuoteId) {
-      return this.currentQuote().who;
+      return this.currentQuote().what;
     }
     return 'Quotebook';
   }
