@@ -31,7 +31,7 @@ const getInitialData = (quoteID, apiData) => {
 const serverRender = (quoteID) =>
   axios.get(getApiUrl(quoteID)).then((resp) => {
     const initialData = getInitialData(quoteID, resp.data);
-    console.log(initialData);
+    // console.log(initialData);
     return {
       initialMarkup: ReactDOMServer.renderToString(<App initialData={initialData} />),
       initialData,
