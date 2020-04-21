@@ -8,3 +8,13 @@
     background-color: #eee; }
   .Quote .quote-string {
     padding: 0.5em; }
+
+.link {
+  cursor: pointer; }
+
+.link-home {
+  padding: 1em;
+  color: blue; }
+
+.navbar {
+  background-color: lightgray; }
