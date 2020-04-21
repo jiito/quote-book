@@ -3,6 +3,7 @@ import axios from 'axios';
 import Navigation from './Navigation';
 import QuoteList from './QuoteList';
 import Quote from './Quote';
+import MakeQuote from './MakeQuote';
 import * as api from '../api';
 
 // implementing the history routing method
@@ -78,6 +79,7 @@ class App extends React.Component {
         <Navigation />
         <h2 className="text-center">{this.pageHeader()}!</h2>
         {this.currentContent()}
+        <MakeQuote />
       </div>
     );
   }
