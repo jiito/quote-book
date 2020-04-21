@@ -1,25 +1,33 @@
 import express from 'express';
-import data from '../src/testData.json';
+import { MongoClient } from 'mongodb';
+import assert from 'assert';
+import config from '../config';
+
+let mdb;
+MongoClient.connect(config.mongodbUri, (err, client) => {
+  assert.equal(null, err);
+
+  mdb = client.db('test');
+});
 
 const router = express.Router();
-const quotes = data.quotes.reduce((obj, quote) => {
-  obj[quote.id] = quote;
-  return obj;
-}, {});
 
 router.get('/quotes', (req, res) => {
-  res.send({
-    // map quotes to object
-    quotes,
-  });
+  let quotes = {};
+  mdb
+    .collection('quotes')
+    .find({})
+    .each((err, quote) => {
+      assert.equal(null, err);
+
+      if (!quote) {
+        res.send(quotes);
+        return;
+      }
+      quotes[quote.id] = quote;
+    });
 });
 
-router.get('/quotes/:quoteID', (req, res) => {
-  let quote = quotes[req.params.quoteID];
-  quote.description =
-    'Lorem ipsum this is a gibberish description to test that the api is working ';
-
-  res.send(quote);
-});
+router.get('/quotes/:quoteID', (req, res) => {});
 
 export default router;
