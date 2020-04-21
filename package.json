@@ -19,6 +19,8 @@
   "homepage": "https://github.com/benjamin-allanrahill/quote-book#readme",
   "dependencies": {
     "axios": "^0.19.2",
+    "babel-cli": "^6.26.0",
+    "babel-node": "0.0.1-security",
     "ejs": "^3.0.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
@@ -34,8 +36,9 @@
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
-    "@babel/node": "7.x",
+    "@babel/node": "^7.8.7",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
