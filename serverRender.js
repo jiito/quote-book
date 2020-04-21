@@ -16,9 +16,9 @@ const getApiUrl = (quoteID) => {
 const getInitialData = (quoteID, apiData) => {
   if (quoteID) {
     return {
-      currentQuoteId: apiData.id,
+      currentQuoteId: apiData._id,
       quotes: {
-        [apiData.id]: apiData,
+        [apiData._id]: apiData,
       },
     };
   }

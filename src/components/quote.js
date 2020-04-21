@@ -4,7 +4,8 @@ class Quote extends Component {
   state = {};
 
   handleClick = () => {
-    this.props.onClick(this.props.id);
+    console.log('clicked...');
+    this.props.onClick(this.props._id);
   };
 
   linkHome() {

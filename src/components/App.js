@@ -29,10 +29,10 @@ class App extends React.Component {
     // look up quote
     api.fetchQuote(quoteId).then((quote) => {
       this.setState({
-        currentQuoteId: quote.id,
+        currentQuoteId: quote._id,
         quotes: {
           ...this.state.quotes,
-          [quote.id]: quote,
+          [quote._id]: quote,
         },
       });
     });

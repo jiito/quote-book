@@ -1,5 +1,5 @@
 import express from 'express';
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectID } from 'mongodb';
 import assert from 'assert';
 import config from '../config';
 
@@ -17,6 +17,10 @@ router.get('/quotes', (req, res) => {
   mdb
     .collection('quotes')
     .find({})
+    .project({
+      who: 1,
+      what: 1,
+    })
     .each((err, quote) => {
       assert.equal(null, err);
 
@@ -24,14 +28,14 @@ router.get('/quotes', (req, res) => {
         res.send(quotes);
         return;
       }
-      quotes[quote.id] = quote;
+      quotes[quote._id] = quote;
     });
 });
 
 router.get('/quotes/:quoteID', (req, res) => {
   mdb
     .collection('quotes')
-    .findOne({ id: Number(req.params.quoteID) })
+    .findOne({ _id: ObjectID(req.params.quoteID) })
     .then((quote) => {
       res.send(quote);
     })
