@@ -28,6 +28,14 @@ router.get('/quotes', (req, res) => {
     });
 });
 
-router.get('/quotes/:quoteID', (req, res) => {});
+router.get('/quotes/:quoteID', (req, res) => {
+  mdb
+    .collection('quotes')
+    .findOne({ id: Number(req.params.quoteID) })
+    .then((quote) => {
+      res.send(quote);
+    })
+    .catch(console.error);
+});
 
 export default router;

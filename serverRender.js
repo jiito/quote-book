@@ -24,7 +24,7 @@ const getInitialData = (quoteID, apiData) => {
   }
 
   return {
-    quotes: apiData.quotes,
+    quotes: apiData,
   };
 };
 
