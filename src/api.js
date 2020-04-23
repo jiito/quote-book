@@ -6,5 +6,5 @@ export const fetchQuote = (quoteID) => {
 };
 
 export const fetchQuoteList = () => {
-  return axios.get(`/api/quotes`).then((resp) => resp.data.quotes);
+  return axios.get(`/api/quotes`).then((resp) => resp.data);
 };
