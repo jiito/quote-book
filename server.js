@@ -4,8 +4,11 @@ import sassMiddleware from 'node-sass-middleware';
 import config from './config';
 import apiRouter from './api';
 import serverRender from './serverRender';
+import bodyParser from 'body-parser';
 
 const server = express();
+
+server.use(bodyParser.json());
 
 // use sass
 server.use(
