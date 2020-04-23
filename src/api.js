@@ -8,3 +8,7 @@ export const fetchQuote = (quoteID) => {
 export const fetchQuoteList = () => {
   return axios.get(`/api/quotes`).then((resp) => resp.data);
 };
+
+export const postNewQuote = (who, what) => {
+  return axios.post(`/api/quotes`, { who, what }).then((resp) => resp.data);
+};
