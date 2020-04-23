@@ -43,8 +43,21 @@ router.get('/quotes/:quoteID', (req, res) => {
 });
 
 router.post('/quotes', (req, res) => {
-  //req.body
+  const { who, what } = req.body;
   console.log(req.body);
+  mdb
+    .collection('quotes')
+    .insertOne({
+      who,
+      what,
+    })
+    .then((result) =>
+      res.send({
+        _id: result.insertedId,
+        who,
+        what,
+      }),
+    );
 });
 
 export default router;
