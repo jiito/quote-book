@@ -49,6 +49,20 @@ class App extends React.Component {
     });
   };
 
+  addQuote = (who, what) => {
+    api
+      .postNewQuote(who, what)
+      .then((newQuote) => {
+        this.setState({
+          quotes: {
+            ...this.state.quotes,
+            [newQuote._id]: newQuote,
+          },
+        });
+      })
+      .catch(console.error);
+  };
+
   pageHeader() {
     if (this.state.currentQuoteId) {
       return this.currentQuote().what;
@@ -70,7 +84,12 @@ class App extends React.Component {
         />
       );
     }
-    return <QuoteList onQuoteClick={this.fetchQuote} quotes={this.state.quotes} />;
+    return (
+      <div>
+        <QuoteList onQuoteClick={this.fetchQuote} quotes={this.state.quotes} />
+        <MakeQuote onQuoteSubmit={this.addQuote} />
+      </div>
+    );
   }
 
   render() {
@@ -79,7 +98,6 @@ class App extends React.Component {
         <Navigation />
         <h2 className="text-center">{this.pageHeader()}!</h2>
         {this.currentContent()}
-        <MakeQuote />
       </div>
     );
   }
