@@ -16,7 +16,6 @@ class App extends React.Component {
   state = this.props.initialData;
 
   componentDidMount() {
-    console.log('Mounted');
     onPopState((event) => {
       this.setState({
         currentQuoteId: (event.state || {}).currentQuoteId,
@@ -95,7 +94,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Navigation />
+        {/* <Navigation /> */}
         <h2 className="text-center">{this.pageHeader()}!</h2>
         {this.currentContent()}
       </div>
