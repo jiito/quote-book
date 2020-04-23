@@ -42,4 +42,9 @@ router.get('/quotes/:quoteID', (req, res) => {
     .catch(console.error);
 });
 
+router.post('/quotes', (req, res) => {
+  //req.body
+  console.log(req.body);
+});
+
 export default router;
