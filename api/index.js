@@ -44,7 +44,6 @@ router.get('/quotes/:quoteID', (req, res) => {
 
 router.post('/quotes', (req, res) => {
   const { who, what } = req.body;
-  console.log(req.body);
   mdb
     .collection('quotes')
     .insertOne({
