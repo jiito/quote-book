@@ -2,6 +2,7 @@ import express from 'express';
 import { MongoClient, ObjectID } from 'mongodb';
 import assert from 'assert';
 import config from '../../config';
+import { addNewQuote, getQuotes } from '../src/controllers/controller';
 
 let mdb;
 MongoClient.connect(config.mongodbUri, (err, client) => {
@@ -12,25 +13,7 @@ MongoClient.connect(config.mongodbUri, (err, client) => {
 
 const router = express.Router();
 
-router.get('/quotes', (req, res) => {
-  let quotes = {};
-  mdb
-    .collection('quotes')
-    .find({})
-    .project({
-      who: 1,
-      what: 1,
-    })
-    .each((err, quote) => {
-      assert.equal(null, err);
-
-      if (!quote) {
-        res.send(quotes);
-        return;
-      }
-      quotes[quote._id] = quote;
-    });
-});
+router.get('/quotes', getQuotes);
 
 router.get('/quotes/:quoteID', (req, res) => {
   mdb
@@ -42,21 +25,6 @@ router.get('/quotes/:quoteID', (req, res) => {
     .catch(console.error);
 });
 
-router.post('/quotes', (req, res) => {
-  const { who, what } = req.body;
-  mdb
-    .collection('quotes')
-    .insertOne({
-      who,
-      what,
-    })
-    .then((result) =>
-      res.send({
-        _id: result.insertedId,
-        who,
-        what,
-      }),
-    );
-});
+router.post('/quotes', addNewQuote);
 
 export default router;
