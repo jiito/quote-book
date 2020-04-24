@@ -2,9 +2,9 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
-import App from './src/components/App';
+import App from '../src/components/App';
 import axios from 'axios';
-import config from './config';
+import config from '../config';
 
 const getApiUrl = (quoteID) => {
   if (quoteID) {

@@ -1,8 +1,8 @@
 import express from 'express';
 import path from 'path';
 import sassMiddleware from 'node-sass-middleware';
-import config from './config';
-import apiRouter from './api';
+import config from '../config';
+import apiRouter from '../api';
 import serverRender from './serverRender';
 import bodyParser from 'body-parser';
 
@@ -26,7 +26,6 @@ server.use(express.static('public'));
 server.set('view engine', 'ejs');
 
 server.get(['/', '/quote/:quoteID'], (req, res) => {
-  console.log(req.params.quoteID);
   serverRender(req.params.quoteID)
     .then(({ initialMarkup, initialData }) => {
       // feed ejs template the content
