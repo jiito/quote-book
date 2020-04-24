@@ -2,13 +2,16 @@ import express from 'express';
 import path from 'path';
 import sassMiddleware from 'node-sass-middleware';
 import config from '../config';
-import apiRouter from '../api';
+import apiRouter from './api';
 import serverRender from './serverRender';
 import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
 
 const server = express();
 
+// body parser
 server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: true }));
 
 // use sass
 server.use(
@@ -17,6 +20,13 @@ server.use(
     dest: path.join(__dirname, 'public'),
   }),
 );
+
+// using mongoose
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/QuotesBookdb', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 // middlewares
 server.use('/api', apiRouter);
