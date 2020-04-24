@@ -4,7 +4,7 @@
   "description": "This is a simple web app to keep track of quotes ",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node server.js --ignore public/",
+    "start": "nodemon --exec babel-node ./backend/server.js --ignore public/",
     "dev": "webpack -wd"
   },
   "repository": {
