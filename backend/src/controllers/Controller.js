@@ -23,3 +23,37 @@ export const getQuotes = (req, res) => {
     res.json(quote);
   });
 };
+
+export const getQuoteWithID = (req, res) => {
+  Quote.findById(req.params.quoteID, (err, quote) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json(quote);
+  });
+};
+
+export const updateQuote = (req, res) => {
+  Quote.findOneAndUpdate(
+    { _id: req.params.quoteID },
+    req.body,
+    { new: true, useFindAndModify: false },
+    (err, quote) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json(quote);
+    },
+  );
+};
+
+export const deleteQuote = (req, res) => {
+  Quote.remove({ _id: req.params.quoteID }, (err, quote) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json({
+      message: 'successfully deleted quote',
+    });
+  });
+};
