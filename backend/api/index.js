@@ -1,7 +1,4 @@
 import express from 'express';
-// import { MongoClient, ObjectID } from 'mongodb';
-// import assert from 'assert';
-// import config from '../../config';
 import {
   addNewQuote,
   getQuotes,
