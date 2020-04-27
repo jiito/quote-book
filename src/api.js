@@ -12,3 +12,7 @@ export const fetchQuoteList = () => {
 export const postNewQuote = (who, what) => {
   return axios.post(`/api/quotes`, { who, what }).then((resp) => resp.data);
 };
+
+export const removeQuote = (_id) => {
+  return axios.delete(`/api/quotes/${_id}`, { _id }).then((resp) => resp);
+};
