@@ -24,9 +24,6 @@ class Quote extends Component {
         <div className="quote-author">{this.props.who}</div>
         <div className="quote-string">{this.props.what}</div>
         <div className="quote-location">{this.props.location}</div>
-        <div className="link link-home" onClick={this.props.onHomeClick}>
-          Return Home
-        </div>
         <div className="button removeQuote">
           <button onClick={this.removeQuote}>remove quote</button>
         </div>

@@ -99,7 +99,7 @@ class App extends React.Component {
     }
     return (
       <div>
-        <QuoteList quotes={this.state.quotes} />
+        <QuoteList quotes={this.state.quotes} onRemoveQuote={this.removeQuote} />
         <MakeQuote onQuoteSubmit={this.addQuote} />
       </div>
     );
