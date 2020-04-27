@@ -53,7 +53,7 @@ export const deleteQuote = (req, res) => {
       res.send(err);
     }
     res.json({
-      message: 'successfully deleted quote',
+      _id: req.params.quoteID,
     });
   });
 };
