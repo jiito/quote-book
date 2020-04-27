@@ -3,11 +3,6 @@ import React, { Component } from 'react';
 class Quote extends Component {
   state = {};
 
-  handleClick = () => {
-    console.log('clicked...');
-    this.props.onClick(this.props._id);
-  };
-
   linkHome() {
     if (this.props.currentQuote) {
       return (
@@ -19,14 +14,22 @@ class Quote extends Component {
     return null;
   }
 
+  removeQuote() {
+    this.props.onRemoveQuote(this.props._id);
+  }
+
   render() {
     return (
-      <div>
-        <div className="link Quote" onClick={this.handleClick}>
-          <div className="quote-author">{this.props.who}</div>
-          <div className="quote-string">{this.props.what}</div>
+      <div className="Quote">
+        <div className="quote-author">{this.props.who}</div>
+        <div className="quote-string">{this.props.what}</div>
+        <div className="quote-location">{this.props.location}</div>
+        <div className="link link-home" onClick={this.props.onHomeClick}>
+          Return Home
         </div>
-        {this.linkHome()}
+        <div className="button removeQuote">
+          <button onClick={this.removeQuote}>remove quote</button>
+        </div>
       </div>
     );
   }

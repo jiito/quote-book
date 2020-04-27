@@ -62,6 +62,18 @@ class App extends React.Component {
       .catch(console.error);
   };
 
+  removeQuote = (_id) => {
+    api.removeQuote(_id).then((removedQuote) => {
+      console.log(removedQuote);
+      this.setState({
+        currentQuoteId: null,
+        quotes: {
+          ...this.state.quotes.splice(removedQuote._id),
+        },
+      });
+    });
+  };
+
   pageHeader() {
     if (this.state.currentQuoteId) {
       return this.currentQuote().what;
@@ -80,12 +92,14 @@ class App extends React.Component {
           {...this.currentQuote()}
           currentQuote={this.state.currentQuoteId}
           onHomeClick={this.fetchQuoteList}
+          onRemoveQuote={this.removeQuote}
+          onClick={this.fetchQuote}
         />
       );
     }
     return (
       <div>
-        <QuoteList onQuoteClick={this.fetchQuote} quotes={this.state.quotes} />
+        <QuoteList quotes={this.state.quotes} />
         <MakeQuote onQuoteSubmit={this.addQuote} />
       </div>
     );
