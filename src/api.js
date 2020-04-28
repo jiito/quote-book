@@ -14,5 +14,5 @@ export const postNewQuote = (who, what) => {
 };
 
 export const removeQuote = (_id) => {
-  return axios.delete(`/api/quotes/${_id}`, { _id }).then((resp) => resp);
+  return axios.delete(`/api/quotes/${_id}`, { _id }).then((resp) => resp.data);
 };
