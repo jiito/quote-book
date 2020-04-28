@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
 
 class Quote extends Component {
-  state = {};
-
-  linkHome() {
-    if (this.props.currentQuote) {
-      return (
-        <div className="link link-home" onClick={this.props.onHomeClick}>
-          Return Home
-        </div>
-      );
-    }
-    return null;
+  constructor(props) {
+    super(props);
+    this;
   }
 
-  removeQuote() {
+  removeQuote = () => {
     this.props.onRemoveQuote(this.props._id);
-  }
+  };
 
   render() {
     return (
