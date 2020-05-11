@@ -67,9 +67,7 @@ class App extends React.Component {
       console.log(removedQuote);
       this.setState({
         currentQuoteId: null,
-        quotes: {
-          ...this.state.quotes.splice(removedQuote._id, 1),
-        },
+        quotes: {},
       });
     });
   };
