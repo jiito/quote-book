@@ -48,7 +48,7 @@ export const updateQuote = (req, res) => {
 };
 
 export const deleteQuote = (req, res) => {
-  Quote.remove({ _id: req.params.quoteID }, (err, quote) => {
+  Quote.deleteOne({ _id: req.params.quoteID }, (err, quote) => {
     if (err) {
       res.send(err);
     }
