@@ -1,12 +1,12 @@
 .Quote {
-  // margin: 1em;
+  margin: 1em;
   border: 1px solid #ccc;
 
   .quote-author {
     border-bottom: 1px solid #ccc;
     padding: 0.25em 0.5em;
     font-weight: bold;
-    background-color: #eee;
+    background-color: rgb(220, 219, 244);
   }
 
   .quote-string {
@@ -21,10 +21,6 @@
 .link-home {
   padding: 1em;
   color: blue;
-}
-
-.navbar {
-  background-color: lightgray;
 }
 
 .input-group {
