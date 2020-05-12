@@ -49,20 +49,18 @@ class App extends React.Component {
   };
 
   addQuote = (who, what) => {
-    api
-      .postNewQuote(who, what)
-      .then((newQuote) => {
-        this.setState({
-          quotes: {
-            ...this.state.quotes,
-            [newQuote._id]: newQuote,
-          },
-        });
-      })
-      .catch(console.error);
+    api.postNewQuote(who, what).then((newQuote) => {
+      this.setState({
+        quotes: {
+          ...this.state.quotes,
+          [newQuote._id]: newQuote,
+        },
+      });
+    });
   };
 
   removeQuote = (_id) => {
+    pushState({ currentQuoteId: null }, `/`);
     api.removeQuote(_id).then((removedQuote) => {
       console.log(removedQuote);
       this.setState({
