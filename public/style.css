@@ -1,23 +1,30 @@
 .Quote {
   margin: 1em;
-  border: 1px solid #ccc; }
-  .Quote .quote-author {
-    border-bottom: 1px solid #ccc;
-    padding: 0.25em 0.5em;
-    font-weight: bold;
-    background-color: #eee; }
-  .Quote .quote-string {
-    padding: 0.5em; }
+  border: 1px solid #ccc;
+}
+.Quote .quote-author {
+  border-bottom: 1px solid #ccc;
+  padding: 0.25em 0.5em;
+  font-weight: bold;
+  background-color: #eee;
+}
+.Quote .quote-string {
+  padding: 0.5em;
+}
 
 .link {
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 .link-home {
   padding: 1em;
-  color: blue; }
+  color: blue;
+}
 
 .navbar {
-  background-color: lightgray; }
+  background-color: lightgray;
+}
 
 .input-group {
-  padding: 1em; }
+  padding: 1em;
+}
