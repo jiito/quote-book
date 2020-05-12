@@ -16,8 +16,8 @@ server.use(bodyParser.urlencoded({ extended: true }));
 // use sass
 server.use(
   sassMiddleware({
-    src: path.join(__dirname, 'sass'),
-    dest: path.join(__dirname, 'public'),
+    src: path.join(__dirname, '..', 'sass'),
+    dest: path.join(__dirname, '..', 'sass'),
   }),
 );
 
