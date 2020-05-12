@@ -30,7 +30,7 @@ class MakeQuote extends Component {
           <h3 className="panel-title">Add a new quote </h3>
         </div>
         <div className="panel-body">
-          <form onSubmit={this.handleSubmit}>
+          <form>
             <div className="input-group">
               <p>Who:</p>
               <input
@@ -43,9 +43,12 @@ class MakeQuote extends Component {
               />
             </div>
             <div className="input-group">
-              <p>What:</p>
+              <label className="control-label" for="what">
+                What:
+              </label>
               <input
                 type="text"
+                id="what"
                 placeholder="What was said?"
                 name="what"
                 value={this.state.what}
@@ -53,7 +56,7 @@ class MakeQuote extends Component {
                 className="form-control"
               />
               <span className="input-group-btn">
-                <button type="submit" className="btn btn-info">
+                <button className="btn btn-info" onClick={this.handleSubmit}>
                   Submit
                 </button>
               </span>
