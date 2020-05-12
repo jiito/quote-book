@@ -1,10 +1,10 @@
 import React from 'react';
-import axios from 'axios';
 import Navigation from './Navigation';
 import QuoteList from './QuoteList';
 import Quote from './Quote';
 import MakeQuote from './MakeQuote';
 import * as api from '../api';
+import { QuoteProvider } from '../context/QuoteContext';
 
 // implementing the history routing method
 const pushState = (obj, url) => window.history.pushState(obj, '', url);
@@ -49,14 +49,18 @@ class App extends React.Component {
   };
 
   addQuote = (who, what) => {
-    api.postNewQuote(who, what).then((newQuote) => {
-      this.setState({
-        quotes: {
-          ...this.state.quotes,
-          [newQuote._id]: newQuote,
-        },
-      });
-    });
+    pushState({ currentQuoteId: null }, `/`);
+    api
+      .postNewQuote(who, what)
+      .then((newQuote) => {
+        this.setState({
+          quotes: {
+            ...this.state.quotes,
+            [newQuote._id]: newQuote,
+          },
+        });
+      })
+      .catch(console.error);
   };
 
   removeQuote = (_id) => {
@@ -106,7 +110,9 @@ class App extends React.Component {
       <div className="App">
         {/* <Navigation /> */}
         <h2 className="text-center">{this.pageHeader()}!</h2>
-        {this.currentContent()}
+        <QuoteProvider value={{ quoteList: this.state.quotes }}>
+          {this.currentContent()}
+        </QuoteProvider>
       </div>
     );
   }
