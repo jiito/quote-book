@@ -43,7 +43,7 @@ class MakeQuote extends Component {
               />
             </div>
             <div className="input-group">
-              <label className="control-label" for="what">
+              <label className="control-label" htmlFor="what">
                 What:
               </label>
               <input

@@ -2,8 +2,8 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
-import App from '../src/components/App';
 import axios from 'axios';
+import App from '../src/components/App';
 import config from '../config';
 
 const getApiUrl = (quoteID) => {
@@ -31,7 +31,6 @@ const getInitialData = (quoteID, apiData) => {
 const serverRender = (quoteID) =>
   axios.get(getApiUrl(quoteID)).then((resp) => {
     const initialData = getInitialData(quoteID, resp.data);
-    // console.log(initialData);
     return {
       initialMarkup: ReactDOMServer.renderToString(<App initialData={initialData} />),
       initialData,
