@@ -107,12 +107,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        {/* <Navigation /> */}
-        <h2 className="text-center">{this.pageHeader()}!</h2>
-        <QuoteProvider value={{ quoteList: this.state.quotes }}>
-          {this.currentContent()}
-        </QuoteProvider>
+      <div className="container-fluid">
+        <div className="App">
+          <Navigation />
+          <div className="container">
+            <h2 className="text-center">{this.pageHeader()}!</h2>
+            <QuoteProvider value={{ quoteList: this.state.quotes }}>
+              {this.currentContent()}
+            </QuoteProvider>
+          </div>
+        </div>
       </div>
     );
   }

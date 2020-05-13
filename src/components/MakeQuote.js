@@ -11,7 +11,8 @@ class MakeQuote extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
+    event.preventDefault();
     this.props.onQuoteSubmit(this.state.who, this.state.what);
   }
 
@@ -25,13 +26,11 @@ class MakeQuote extends Component {
 
   render() {
     return (
-      <div className="MakeQuote panel panel-default">
-        <div className="panel-heading">
-          <h3 className="panel-title">Add a new quote </h3>
-        </div>
-        <div className="panel-body">
+      <div className="card">
+        <div className="card-body">
+          <h3 className="card-title">Add a new quote</h3>
           <form>
-            <div className="input-group">
+            <div className="form-group">
               <p>Who:</p>
               <input
                 type="text"
@@ -42,7 +41,7 @@ class MakeQuote extends Component {
                 className="form-control"
               />
             </div>
-            <div className="input-group">
+            <div className="form-group">
               <label className="control-label" htmlFor="what">
                 What:
               </label>
@@ -55,12 +54,12 @@ class MakeQuote extends Component {
                 onChange={this.handleChange}
                 className="form-control"
               />
-              <span className="input-group-btn">
-                <button className="btn btn-info" onClick={this.handleSubmit}>
-                  Submit
-                </button>
-              </span>
             </div>
+            <span className="input-group-btn">
+              <button className="btn btn-primary" onClick={this.handleSubmit}>
+                Submit
+              </button>
+            </span>
           </form>
         </div>
       </div>
