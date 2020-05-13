@@ -12,11 +12,12 @@ class Quote extends Component {
 
   render() {
     return (
-      <div className="Quote">
-        <div className="quote-author">{this.props.who}</div>
-        <div className="quote-string">{this.props.what}</div>
-        <div className="quote-location">{this.props.location}</div>
-        <div className="removeQuote">
+      <div className="Quote card">
+        <div className="card-body">
+          <blockquote className="blockquote mb-0">
+            <p className="quote-string">{this.props.what}</p>
+            <footer className="blockquote-footer">{this.props.who}</footer>
+          </blockquote>
           <button className="button btn-primary" onClick={this.removeQuote}>
             remove
           </button>
