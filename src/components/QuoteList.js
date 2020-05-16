@@ -6,7 +6,7 @@ const QuoteList = ({ onRemoveQuote }) => (
   <QuoteConsumer>
     {({ quoteList }) =>
       quoteList ? (
-        <div className="QuoteList card-columns">
+        <div className="QuoteList">
           {Object.keys(quoteList).map((quoteId) => (
             <Quote key={quoteId} {...quoteList[quoteId]} onRemoveQuote={onRemoveQuote} />
           ))}
