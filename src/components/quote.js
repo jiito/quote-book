@@ -18,7 +18,7 @@ class Quote extends Component {
             <p className="quote-string">{this.props.what}</p>
             <footer className="blockquote-footer">{this.props.who}</footer>
           </blockquote>
-          <button className="button btn-primary" onClick={this.removeQuote}>
+          <button className="btn btn-primary" onClick={this.removeQuote}>
             remove
           </button>
         </div>
