@@ -2,7 +2,7 @@ import React from 'react';
 import Navigation from './Navigation';
 import QuoteList from './QuoteList';
 import Quote from './Quote';
-import MakeQuote from './MakeQuote';
+import MakeQuote from './NewQuoteForm';
 import * as api from '../api';
 import { QuoteProvider } from '../context/QuoteContext';
 
