@@ -1,11 +1,11 @@
 import express from 'express';
 import path from 'path';
 import sassMiddleware from 'node-sass-middleware';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
 import config from '../config';
 import apiRouter from './api';
 import serverRender from './serverRender';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
 
 const server = express();
 
