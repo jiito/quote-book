@@ -1,15 +1,11 @@
 import React from 'react';
-import { useInput } from '../hooks/input-hook';
-import { useForm } from 'react-hook-form';
+import { useForm, ErrorMessage } from 'react-hook-form';
+import FormInputError from './FormInputError';
 
 function NewQuoteForm(props) {
-  // const { value: author, bind: bindAuthor, reset: resetAuthor } = useInput('');
-  // const { value: quote, bind: bindQuote, reset: resetQuote } = useInput('');
-
-  const { register, handleSubmit } = useForm();
+  const { register, errors, handleSubmit } = useForm();
 
   function onSubmit({ author, quote }) {
-    //console.log(data);
     props.onQuoteSubmit(author, quote);
   }
 
@@ -24,10 +20,12 @@ function NewQuoteForm(props) {
               type="text"
               placeholder="Who said it?"
               name="author"
-              ref={register}
+              ref={register({ required: 'Please add a person.', pattern: /^[A-Za-z]+$/i })}
               className="form-control"
             />
-            <div className="invalid-feedback">Please add a person.</div>
+            <ErrorMessage errors={errors} name="author">
+              {({ message }) => <FormInputError message={message} />}
+            </ErrorMessage>
           </div>
           <div className="form-group">
             <label className="control-label">What:</label>
@@ -35,10 +33,10 @@ function NewQuoteForm(props) {
               type="text"
               placeholder="What was said?"
               name="quote"
-              ref={register}
+              ref={register({ required: 'Please add a quote.', pattern: /^[A-Za-z]+$/i })}
               className="form-control"
             />
-            <div className="invalid-feedback">Please add a quote.</div>
+            <ErrorMessage errors={errors} name="quote" />
           </div>
           <span className="input-group-btn">
             <button className="btn btn-primary" onClick={handleSubmit(onSubmit)}>
