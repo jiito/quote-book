@@ -25,7 +25,9 @@ function NewQuoteForm(props) {
               name="author"
               {...bindAuthor}
               className="form-control"
+              required
             />
+            <div className="invalid-feedback">Please add a person.</div>
           </div>
           <div className="form-group">
             <label className="control-label">What:</label>
@@ -35,7 +37,9 @@ function NewQuoteForm(props) {
               name="quote"
               {...bindQuote}
               className="form-control"
+              required
             />
+            <div className="invalid-feedback">Please add a quote.</div>
           </div>
           <span className="input-group-btn">
             <button className="btn btn-primary" onClick={handleSubmit}>
