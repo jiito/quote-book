@@ -1,4 +1,4 @@
-import { Quote } from '../models/QuoteModel';
+import Quote from '../models/QuoteModel';
 
 export const addNewQuote = (req, res) => {
   let newQuote = new Quote(req.body);
