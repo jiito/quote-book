@@ -1,15 +1,12 @@
 import React from 'react';
-import { useInput } from '../hooks/input-hook';
+import { useForm, ErrorMessage } from 'react-hook-form';
+import FormInputError from './FormInputError';
 
 function NewQuoteForm(props) {
-  const { value: author, bind: bindAuthor, reset: resetAuthor } = useInput('');
-  const { value: quote, bind: bindQuote, reset: resetQuote } = useInput('');
+  const { register, errors, handleSubmit } = useForm();
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  function onSubmit({ author, quote }) {
     props.onQuoteSubmit(author, quote);
-    resetAuthor();
-    resetQuote();
   }
 
   return (
@@ -23,11 +20,12 @@ function NewQuoteForm(props) {
               type="text"
               placeholder="Who said it?"
               name="author"
-              {...bindAuthor}
+              ref={register({ required: 'Please add a quote.', pattern: /^[A-Za-z]+$/i })}
               className="form-control"
-              required
             />
-            <div className="invalid-feedback">Please add a person.</div>
+            <ErrorMessage errors={errors} name="author">
+              {({ message }) => <FormInputError message={message} />}
+            </ErrorMessage>
           </div>
           <div className="form-group">
             <label className="control-label">What:</label>
@@ -35,14 +33,15 @@ function NewQuoteForm(props) {
               type="text"
               placeholder="What was said?"
               name="quote"
-              {...bindQuote}
+              ref={register({ required: 'Please add a quote.', pattern: /^[A-Za-z]+$/i })}
               className="form-control"
-              required
             />
-            <div className="invalid-feedback">Please add a quote.</div>
+            <ErrorMessage errors={errors} name="quote">
+              {({ message }) => <FormInputError message={message} />}
+            </ErrorMessage>
           </div>
           <span className="input-group-btn">
-            <button className="btn btn-primary" onClick={handleSubmit}>
+            <button className="btn btn-primary" onClick={handleSubmit(onSubmit)}>
               Submit
             </button>
           </span>
