@@ -20,7 +20,7 @@ function NewQuoteForm(props) {
               type="text"
               placeholder="Who said it?"
               name="author"
-              ref={register({ required: 'Please add a person.', pattern: /^[A-Za-z]+$/i })}
+              ref={register({ required: 'Please add a quote.', pattern: /^[A-Za-z]+$/i })}
               className="form-control"
             />
             <ErrorMessage errors={errors} name="author">
@@ -36,7 +36,9 @@ function NewQuoteForm(props) {
               ref={register({ required: 'Please add a quote.', pattern: /^[A-Za-z]+$/i })}
               className="form-control"
             />
-            <ErrorMessage errors={errors} name="quote" />
+            <ErrorMessage errors={errors} name="quote">
+              {({ message }) => <FormInputError message={message} />}
+            </ErrorMessage>
           </div>
           <span className="input-group-btn">
             <button className="btn btn-primary" onClick={handleSubmit(onSubmit)}>
