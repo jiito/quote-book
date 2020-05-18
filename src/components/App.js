@@ -66,10 +66,10 @@ class App extends React.Component {
   removeQuote = (_id) => {
     pushState({ currentQuoteId: null }, `/`);
     api.removeQuote(_id).then((removedQuote) => {
-      console.log(removedQuote);
+      console.log(this.state.quotes);
+      delete this.state.quotes[removedQuote._id];
       this.setState({
         currentQuoteId: null,
-        quotes: {},
       });
     });
   };
