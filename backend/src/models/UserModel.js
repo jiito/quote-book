@@ -2,19 +2,25 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const QuoteSchema = new Schema({
-  author: {
-    type: String,
-    required: 'Enter who said it',
+const UserSchema = new Schema(
+  {
+    username: {
+      type: String,
+      lowercase: true,
+      required: [true, "can't be blank"],
+      match: [/^[a-zA-Z0-9]+$/, 'is invalid'],
+      index: true,
+    },
+    email: {
+      type: String,
+      lowercase: true,
+      required: [true, "can't be blank"],
+      match: [/\S+@\S+\.\S+/, 'is invalid'],
+      index: true,
+    },
   },
-  quote: {
-    type: String,
-    required: 'Enter what was said',
-  },
-  created_date: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  { timestamps: true },
+);
 
-export default QuoteSchema;
+const User = mongoose.model('users', UserSchema);
+export default User;
