@@ -2,12 +2,12 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-export const QuoteSchema = new Schema({
-  who: {
+const QuoteSchema = new Schema({
+  author: {
     type: String,
     required: 'Enter who said it',
   },
-  what: {
+  quote: {
     type: String,
     required: 'Enter what was said',
   },
@@ -16,3 +16,5 @@ export const QuoteSchema = new Schema({
     default: Date.now,
   },
 });
+
+export default QuoteSchema;
