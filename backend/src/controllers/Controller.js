@@ -1,8 +1,4 @@
-import mongoose from 'mongoose';
-import { QuoteSchema } from '../models/Model';
-
-// constructor
-const Quote = mongoose.model('Quote', QuoteSchema, 'quotes');
+import { Quote } from '../models/QuoteModel';
 
 export const addNewQuote = (req, res) => {
   let newQuote = new Quote(req.body);
