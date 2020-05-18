@@ -5,15 +5,15 @@ import {
   getQuoteWithID,
   updateQuote,
   deleteQuote,
-} from '../src/controllers/controller';
+} from '../src/controllers/QuoteController';
 
-const router = express.Router();
+const apiRouter = express.Router();
 
-router.get('/quotes', getQuotes);
-router.post('/quotes', addNewQuote);
+apiRouter.get('/quotes', getQuotes);
+apiRouter.post('/quotes', addNewQuote);
 
-router.get('/quotes/:quoteID', getQuoteWithID);
-router.put('/quotes/:quoteID', updateQuote);
-router.delete('/quotes/:quoteID', deleteQuote);
+apiRouter.get('/quotes/:quoteID', getQuoteWithID);
+apiRouter.put('/quotes/:quoteID', updateQuote);
+apiRouter.delete('/quotes/:quoteID', deleteQuote);
 
-export default router;
+export default apiRouter;
