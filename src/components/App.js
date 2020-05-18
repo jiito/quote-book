@@ -2,7 +2,7 @@ import React from 'react';
 import Navigation from './Navigation';
 import QuoteList from './QuoteList';
 import Quote from './Quote';
-import MakeQuote from './MakeQuote';
+import NewQuoteForm from './NewQuoteForm';
 import * as api from '../api';
 import { QuoteProvider } from '../context/QuoteContext';
 
@@ -100,7 +100,7 @@ class App extends React.Component {
     return (
       <div>
         <QuoteList quotes={this.state.quotes} onRemoveQuote={this.removeQuote} />
-        <MakeQuote onQuoteSubmit={this.addQuote} />
+        <NewQuoteForm onQuoteSubmit={this.addQuote} />
       </div>
     );
   }
