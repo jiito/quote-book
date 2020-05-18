@@ -1,15 +1,16 @@
 import React from 'react';
 import { useInput } from '../hooks/input-hook';
+import { useForm } from 'react-hook-form';
 
 function NewQuoteForm(props) {
-  const { value: author, bind: bindAuthor, reset: resetAuthor } = useInput('');
-  const { value: quote, bind: bindQuote, reset: resetQuote } = useInput('');
+  // const { value: author, bind: bindAuthor, reset: resetAuthor } = useInput('');
+  // const { value: quote, bind: bindQuote, reset: resetQuote } = useInput('');
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  const { register, handleSubmit } = useForm();
+
+  function onSubmit({ author, quote }) {
+    //console.log(data);
     props.onQuoteSubmit(author, quote);
-    resetAuthor();
-    resetQuote();
   }
 
   return (
@@ -23,9 +24,8 @@ function NewQuoteForm(props) {
               type="text"
               placeholder="Who said it?"
               name="author"
-              {...bindAuthor}
+              ref={register}
               className="form-control"
-              required
             />
             <div className="invalid-feedback">Please add a person.</div>
           </div>
@@ -35,14 +35,13 @@ function NewQuoteForm(props) {
               type="text"
               placeholder="What was said?"
               name="quote"
-              {...bindQuote}
+              ref={register}
               className="form-control"
-              required
             />
             <div className="invalid-feedback">Please add a quote.</div>
           </div>
           <span className="input-group-btn">
-            <button className="btn btn-primary" onClick={handleSubmit}>
+            <button className="btn btn-primary" onClick={handleSubmit(onSubmit)}>
               Submit
             </button>
           </span>
