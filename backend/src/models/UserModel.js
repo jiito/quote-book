@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import QuoteSchema from './QuoteModel';
 
 const { Schema } = mongoose;
 
@@ -22,6 +23,7 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
+    quotes: [QuoteSchema],
   },
   { timestamps: true },
 );
