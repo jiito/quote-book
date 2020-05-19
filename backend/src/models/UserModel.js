@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const UserSchema = new Schema(
   {
-    username: {
+    name: {
       type: String,
       lowercase: true,
       required: [true, "can't be blank"],
@@ -17,6 +17,10 @@ const UserSchema = new Schema(
       required: [true, "can't be blank"],
       match: [/\S+@\S+\.\S+/, 'is invalid'],
       index: true,
+    },
+    password: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true },
