@@ -1,5 +1,4 @@
 import { Strategy, ExtractJwt } from 'passport-jwt';
-import mongoose from 'mongoose';
 import config from '../config';
 import User from './src/models/UserModel';
 
@@ -7,7 +6,7 @@ const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = config.secretOrKey;
 
-const passport = () => {
+const passportConfig = (passport) => {
   passport.use(
     new Strategy(opts, (jwtPayload, done) => {
       User.findById(jwtPayload.id)
@@ -21,3 +20,5 @@ const passport = () => {
     }),
   );
 };
+
+export default passportConfig;
