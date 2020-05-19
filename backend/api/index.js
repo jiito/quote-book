@@ -6,8 +6,11 @@ import {
   updateQuote,
   deleteQuote,
 } from '../src/controllers/QuoteController';
+import userRouter from './routes/users/usersRouter';
 
 const apiRouter = express.Router();
+
+apiRouter.use('/users', userRouter);
 
 apiRouter.get('/quotes', getQuotes);
 apiRouter.post('/quotes', addNewQuote);
