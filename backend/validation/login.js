@@ -1,5 +1,5 @@
 import * as Validator from 'validator';
-import { isEmpty } from 'is-empty';
+import isEmpty from 'is-empty';
 
 function validateLoginInput(data) {
   let errors = {};
