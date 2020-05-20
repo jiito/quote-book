@@ -1,8 +1,22 @@
-import Quote from '../models/QuoteModel';
+import { Quote } from '../models/QuoteModel';
+import User from '../models/UserModel';
 
 export const addNewQuote = (req, res) => {
-  let newQuote = new Quote(req.body);
+  let newQuote = new Quote(req.body.quote);
+  let { userId } = req.body;
+  // update the user object
+  User.findOneAndUpdate(
+    userId,
+    { $push: { quotes: newQuote } },
+    { new: true },
+    (err, updatedUser) => {
+      if (err) {
+        res.send(err);
+      }
+    },
+  );
 
+  // save the new quote and respond with it
   newQuote.save((err, quote) => {
     if (err) {
       res.send(err);
@@ -32,7 +46,7 @@ export const getQuoteWithID = (req, res) => {
 export const updateQuote = (req, res) => {
   Quote.findOneAndUpdate(
     { _id: req.params.quoteID },
-    req.body,
+    req.body, // FIX THIS
     { new: true, useFindAndModify: false },
     (err, quote) => {
       if (err) {
