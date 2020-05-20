@@ -17,8 +17,7 @@ loginRouter.post('/', (req, res) => {
     return res.status(400).json(errors);
   }
 
-  const username = req.body.username;
-  const password = req.body.password;
+  const { password, username } = req.body;
 
   User.findOne({ username }).then((user) => {
     // Check if user exists
