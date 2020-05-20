@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import QuoteSchema from './QuoteModel';
+import { QuoteSchema } from './QuoteModel';
 
 const { Schema } = mongoose;
 
