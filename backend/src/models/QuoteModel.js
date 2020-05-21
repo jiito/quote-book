@@ -2,7 +2,11 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const QuoteSchema = new Schema({
+export const QuoteSchema = new Schema({
+  userId: {
+    type: String,
+    required: 'Please provide a user ID',
+  },
   author: {
     type: String,
     required: 'Enter who said it',
@@ -17,4 +21,4 @@ const QuoteSchema = new Schema({
   },
 });
 
-export default QuoteSchema;
+export const Quote = mongoose.model('quotes', QuoteSchema);
