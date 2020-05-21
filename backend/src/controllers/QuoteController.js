@@ -4,13 +4,17 @@ import User from '../models/UserModel';
 export const addNewQuote = (req, res) => {
   let newQuote = new Quote(req.body.quote);
   let { userId } = req.body;
+
+  if (!userId) {
+    res.send({ error: 'please specify a use to add this quote to' });
+  }
   // update the user object
   User.findOneAndUpdate(
     userId,
     { $push: { quotes: newQuote } },
-    { new: true },
+    { new: true, useFindAndModify: false },
     (err, updatedUser) => {
-      if (err) {
+      if (err || !updatedUser) {
         res.send(err);
       }
     },
@@ -66,4 +70,21 @@ export const deleteQuote = (req, res) => {
       _id: req.params.quoteID,
     });
   });
+
+  let { userId } = req.body;
+
+  if (!userId) {
+    res.json({ error: 'please specify a use to add this quote to' });
+  }
+  // update the user object
+  User.findOneAndUpdate(
+    userId,
+    { $push: { quotes: newQuote } },
+    { new: true, useFindAndModify: false },
+    (err, updatedUser) => {
+      if (err || !updatedUser) {
+        res.send(err);
+      }
+    },
+  );
 };
