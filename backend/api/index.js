@@ -14,9 +14,9 @@ apiRouter.use('/users', userRouter);
 
 apiRouter.get('/quotes', getQuotes);
 apiRouter.post('/quotes', addNewQuote);
+apiRouter.delete('/quotes/', deleteQuote);
 
 apiRouter.get('/quotes/:quoteID', getQuoteWithID);
 apiRouter.put('/quotes/:quoteID', updateQuote);
-apiRouter.delete('/quotes/:quoteID', deleteQuote);
 
 export default apiRouter;
