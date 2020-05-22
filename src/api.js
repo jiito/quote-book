@@ -9,6 +9,7 @@ export const fetchQuoteList = () => {
   return axios.get(`/api/quotes`).then((resp) => resp.data);
 };
 
+// FIX TO SEND USER ID
 export const postNewQuote = (who, what) => {
   return axios.post(`/api/quotes`, { who, what }).then((resp) => resp.data);
 };
