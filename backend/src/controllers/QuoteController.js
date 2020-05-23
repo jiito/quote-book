@@ -2,7 +2,7 @@ import { Quote } from '../models/QuoteModel';
 import User from '../models/UserModel';
 
 export const addNewQuote = (req, res) => {
-  let newQuote = new Quote(req.body.quote);
+  let newQuote = new Quote(req.body);
   let { userId } = req.body;
 
   if (!userId) {
@@ -62,29 +62,22 @@ export const updateQuote = (req, res) => {
 };
 
 export const deleteQuote = (req, res) => {
-  Quote.deleteOne({ _id: req.params.quoteID }, (err, quote) => {
+  let { userId, quoteId } = req.body;
+  Quote.deleteOne({ _id: quoteId }, (err) => {
     if (err) {
-      res.send(err);
+      return res.send(err);
     }
-    res.json({
-      _id: req.params.quoteID,
+    User.findById(userId, (userErr, user) => {
+      if (userErr) {
+        return res.send(userErr);
+      }
+      user.quotes.pull({ _id: quoteId });
+      user.save((saveErr) => {
+        if (saveErr) {
+          return res.send(saveErr);
+        }
+        res.json(user);
+      });
     });
   });
-
-  let { userId } = req.body;
-
-  if (!userId) {
-    res.json({ error: 'please specify a use to add this quote to' });
-  }
-  // update the user object
-  User.findOneAndUpdate(
-    userId,
-    { $push: { quotes: newQuote } },
-    { new: true, useFindAndModify: false },
-    (err, updatedUser) => {
-      if (err || !updatedUser) {
-        res.send(err);
-      }
-    },
-  );
 };
