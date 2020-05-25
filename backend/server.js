@@ -44,15 +44,16 @@ passportConfig(passport);
 server.set('view engine', 'ejs');
 
 server.get(['/', '/quote/:quoteID'], (req, res) => {
-  serverRender(req.params.quoteID)
-    .then(({ initialMarkup, initialData }) => {
-      // feed ejs template the content
-      res.render('index', {
-        content: initialMarkup,
-        data: initialData,
-      });
-    })
-    .catch(console.error);
+  res.render('index', { content: 'The Quotebook' });
+  // serverRender(req.params.quoteID)
+  //   .then(({ initialMarkup, initialData }) => {
+  //     // feed ejs template the content
+  //     res.render('index', {
+  //       content: initialMarkup,
+  //       data: initialData,
+  //     });
+  //   })
+  //   .catch(console.error);
 });
 
 server.listen(config.port, config.host, () => {
