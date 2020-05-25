@@ -2,12 +2,18 @@ import React from 'react';
 import { useForm, ErrorMessage } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import FormInputError from '../FormInputError';
-
+import { registerUser } from '../../api';
 function Register(props) {
   const { register, errors, handleSubmit } = useForm();
 
-  function onSubmit({ author, quote }) {
-    // props.onQuoteSubmit(author, quote);
+  function onSubmit({ name, email, password, password2 }) {
+    const newUser = {
+      name,
+      email,
+      password,
+      password2,
+    };
+    registerUser(newUser);
   }
 
   return (
@@ -23,7 +29,7 @@ function Register(props) {
               <p>Name</p>
               <input
                 type="text"
-                id="name"
+                name="name"
                 ref={register({ required: 'Please enter your name' })}
                 className="form-control"
               />
@@ -35,7 +41,7 @@ function Register(props) {
               <p>Email</p>
               <input
                 type="email"
-                id="email"
+                name="email"
                 ref={register({ required: 'Please enter your email' })}
                 className="form-control"
               />
@@ -47,7 +53,7 @@ function Register(props) {
               <label className="control-label">Password</label>
               <input
                 type="password"
-                id="password"
+                name="password"
                 ref={register({ required: 'Please type your password' })}
                 className="form-control"
               />
@@ -59,7 +65,7 @@ function Register(props) {
               <label className="control-label">Confirm Password</label>
               <input
                 type="password"
-                id="password2"
+                name="password2"
                 ref={register({ required: 'Please confirm your password' })}
                 className="form-control"
               />

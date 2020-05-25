@@ -2,12 +2,17 @@ import React from 'react';
 import { useForm, ErrorMessage } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import FormInputError from '../FormInputError';
+import { loginUser } from '../../api';
 
 function Login(props) {
   const { register, errors, handleSubmit } = useForm();
 
-  function onSubmit({ author, quote }) {
-    // props.onQuoteSubmit(author, quote);
+  function onSubmit({ username, password }) {
+    const userData = {
+      username,
+      password,
+    };
+    loginUser(userData);
   }
 
   return (
