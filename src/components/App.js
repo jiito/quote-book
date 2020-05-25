@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navigation from './static/Navigation';
 import QuoteList from './QuoteList';
 import Quote from './Quote';
@@ -7,6 +7,8 @@ import NewQuoteForm from './NewQuoteForm';
 import * as api from '../api';
 import { QuoteProvider } from '../context/QuoteContext';
 import Landing from './static/Landing';
+import Login from './auth/Login';
+import Register from './auth/Register';
 
 // implementing the history routing method
 const pushState = (obj, url) => window.history.pushState(obj, '', url);
@@ -113,7 +115,9 @@ class App extends React.Component {
         <Router>
           <div className="App">
             <Navigation />
-            <Landing />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
             {/* <div className="container">
             <h2 className="text-center">{this.pageHeader()}!</h2>
             <QuoteProvider value={{ quoteList: this.state.quotes }}>
