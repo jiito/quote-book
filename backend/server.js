@@ -43,7 +43,7 @@ passportConfig(passport);
 // use ejs
 server.set('view engine', 'ejs');
 
-server.get(['/', '/quote/:quoteID'], (req, res) => {
+server.get('*', (req, res) => {
   res.render('index', { content: 'The Quotebook' });
   // serverRender(req.params.quoteID)
   //   .then(({ initialMarkup, initialData }) => {
