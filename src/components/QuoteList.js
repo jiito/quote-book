@@ -1,9 +1,9 @@
 import React from 'react';
 import Quote from './Quote';
-import { QuoteConsumer } from '../context/QuoteContext';
+import { UserConsumer } from '../context/UserContext';
 
 const QuoteList = ({ onRemoveQuote }) => (
-  <QuoteConsumer>
+  <UserConsumer>
     {({ quoteList }) =>
       quoteList ? (
         <div className="QuoteList">
@@ -13,7 +13,7 @@ const QuoteList = ({ onRemoveQuote }) => (
         </div>
       ) : null
     }
-  </QuoteConsumer>
+  </UserConsumer>
 );
 
 export default QuoteList;
