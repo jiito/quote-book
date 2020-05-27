@@ -6,10 +6,11 @@ import { registerUser } from '../../api';
 function Register(props) {
   const { register, errors, handleSubmit } = useForm();
 
-  function onSubmit({ name, email, password, password2 }) {
+  function onSubmit({ name, email, username, password, password2 }) {
     const newUser = {
       name,
       email,
+      username,
       password,
       password2,
     };
@@ -49,6 +50,19 @@ function Register(props) {
                 {({ message }) => <FormInputError message={message} />}
               </ErrorMessage>
             </div>
+            <div className="form-group">
+              <p>Username</p>
+              <input
+                type="text"
+                name="username"
+                ref={register({ required: 'Please enter your username' })}
+                className="form-control"
+              />
+              <ErrorMessage errors={errors} name="email">
+                {({ message }) => <FormInputError message={message} />}
+              </ErrorMessage>
+            </div>
+
             <div className="form-group">
               <label className="control-label">Password</label>
               <input

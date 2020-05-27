@@ -18,6 +18,12 @@ const UserSchema = new Schema(
       match: [/\S+@\S+\.\S+/, 'is invalid'],
       index: true,
     },
+    username: {
+      type: String,
+      lowercase: true,
+      required: [true, "can't be blank"],
+      index: true,
+    },
     password: {
       type: String,
       required: true,
