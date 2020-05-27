@@ -7,18 +7,21 @@ import User from '../models/UserModel';
  * @param {*} res
  */
 export const addNewUser = (req, res) => {
+  User.findOne({ username: req.body.username }).then((user) => {
+    if (user) {
+      return res.status(400).json({ username: 'Username already exists' });
+    }
+  });
   User.findOne({ email: req.body.email }).then((user) => {
     if (user) {
       return res.status(400).json({ email: 'Email already exists' });
     }
-    console.log(req.body.password);
     const newUser = new User({
       name: req.body.name,
       email: req.body.email,
+      username: req.body.username,
       password: req.body.password,
     });
-
-    console.log(newUser);
 
     // Hash password before saving in database
     bcrypt.genSalt(10, (err, salt) => {
@@ -44,10 +47,19 @@ export const getAllUsers = (req, res) => {
 };
 
 export const findUserById = (req, res) => {
-  User.findById(req.params.Userid, (err, quote) => {
+  User.findById(req.params.UserId, (err, user) => {
     if (err) {
       res.send(err);
     }
-    res.json(quote);
+    res.json(user);
+  });
+};
+
+export const deleteUserById = (req, res) => {
+  User.deleteOne({ _id: req.body.UserId }, (err, user) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json(user);
   });
 };
