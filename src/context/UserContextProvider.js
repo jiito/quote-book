@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 import { setAuthToken } from '../api';
-
-const UserContext = React.createContext({});
-export const userConsumer = UserContext.Consumer();
+import { UserContext } from './UserContext';
+import isEmpty from 'is-empty';
 
 class UserContextProvider extends Component {
   constructor(props) {
@@ -27,16 +26,12 @@ class UserContextProvider extends Component {
     });
   };
 
-  loginUser = (userData) => {
-    axios.post('/api/users/login', userData).then((res) => {
-      // Set token to local storage
-      const { token } = res.data;
-      localStorage.setItem('jwtToken', token);
-      // Set token to Auth header
-      setAuthToken(token);
-      // Decode token to get user data
-      const decoded = jwt_decode(token);
-      return decoded;
+  setCurrentUser = (user) => {
+    console.log(`Setting the current user to ${user}`);
+    this.setState({
+      ...this.state,
+      isAuthenticated: !isEmpty(user),
+      user,
     });
   };
 
@@ -46,6 +41,7 @@ class UserContextProvider extends Component {
         value={{
           logoutUser: this.logoutUser,
           loginUser: this.loginUser,
+          setCurrentUser: this.setCurrentUser,
           ...this.state,
         }}
       >

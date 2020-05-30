@@ -1,5 +1,6 @@
 // this is where all api logic should be placed
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 export const fetchQuote = (quoteID) => {
   return axios.get(`/api/quotes/${quoteID}`).then((resp) => resp.data);
@@ -29,7 +30,6 @@ export const setAuthToken = (token) => {
 };
 
 export const registerUser = (userData) => {
-  console.log('Api request');
   axios
     .post('/api/users/register', userData)
     .then((resp) => resp.data)
@@ -44,16 +44,7 @@ export const loginUser = (userData) => {
     // Set token to Auth header
     setAuthToken(token);
     // Decode token to get user data
-    const decoded = jwt_decode(toke);
+    const decoded = jwt_decode(token);
     return decoded;
   });
-};
-
-export const logoutUser = () => {
-  // Remove token from local storage
-  localStorage.removeItem('jwtToken');
-  // Remove auth header for future requests
-  setAuthToken(false);
-  // Set current user to empty object {} which will set isAuthenticated to false
-  return {};
 };
