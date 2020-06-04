@@ -106,7 +106,12 @@ const App = (props) => {
                   <Login history={window.history} onLogin={loginUser} />
                 </Route>
                 <Route exact path="/register" component={Register} />
-                <PrivateRoute exact path="/quotes" component={QuotePage}></PrivateRoute>
+                <PrivateRoute
+                  exact
+                  path="/quotes"
+                  component={QuotePage}
+                  auth={isAuthenticated}
+                ></PrivateRoute>
               </div>
             </Router>
           </div>
