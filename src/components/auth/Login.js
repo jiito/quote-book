@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm, ErrorMessage } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import FormInputError from '../FormInputError';
-import { loginUser } from '../../api';
+// import { loginUser } from '../../api';
+import { UserContext } from '../../context/UserContext';
 
-function Login(props) {
+const Login = (props) => {
+  const { onLogin, history } = props;
   const { register, errors, handleSubmit } = useForm();
+
+  // read in context
+  const { loginUser } = useContext(UserContext);
+
+  const [redirect, setRedirect] = useState(false);
 
   function onSubmit({ username, password }) {
     const userData = {
@@ -13,10 +20,14 @@ function Login(props) {
       password,
     };
     loginUser(userData);
+    console.log(props);
+    setRedirect(true);
   }
 
   return (
     <div className="container">
+      {/* redirect to home */}
+      {redirect ? <Redirect to="/quotes" /> : null}
       <Link to="/">Back to home</Link>
       <div className="card">
         <div className="card-body">
@@ -59,6 +70,6 @@ function Login(props) {
       </div>
     </div>
   );
-}
+};
 
 export default Login;

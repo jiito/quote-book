@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
-import { setAuthToken } from '../api';
+import * as api from '../api';
+import { setAuthToken, loginUser } from '../api';
 import { UserContext } from './UserContext';
 import isEmpty from 'is-empty';
 
@@ -14,6 +15,21 @@ class UserContextProvider extends Component {
       loading: false,
     };
   }
+
+  componentWillMount() {
+    localStorage.getItem('jwtToken') ? this.setState({ isAuthenticated: true }) : null;
+  }
+
+  loginUser = (userData) => {
+    this.setState({
+      user: userData,
+    });
+    console.log(this.state.user);
+    api.loginUser(this.state.user);
+    this.setState({
+      isAuthenticated: true,
+    });
+  };
 
   logoutUser = () => {
     // Remove token from local storage
