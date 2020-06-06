@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm, ErrorMessage } from 'react-hook-form';
 import FormInputError from './FormInputError';
+import { QuoteContext } from '../context/QuoteContext';
+import { UserContext } from '../context/UserContext';
 
 function NewQuoteForm(props) {
   const { register, errors, handleSubmit } = useForm();
 
+  // read in context
+  const { addQuote } = useContext(QuoteContext);
+
   function onSubmit({ author, quote }) {
-    props.onQuoteSubmit(author, quote);
+    addQuote(author, quote);
   }
 
   return (
@@ -33,7 +38,7 @@ function NewQuoteForm(props) {
               type="text"
               placeholder="What was said?"
               name="quote"
-              ref={register({ required: 'Please add a quote.', pattern: /^[A-Za-z]+$/i })}
+              ref={register({ required: 'Please add a quote.' })}
               className="form-control"
             />
             <ErrorMessage errors={errors} name="quote">
