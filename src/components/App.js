@@ -14,69 +14,8 @@ import { UserContext, UserConsumer } from '../context/UserContext';
 import PrivateRoute from './private-route/PrivateRoute';
 import QuotePage from './QuotePage';
 
-// implementing the history routing method
-const pushState = (obj, url) => window.history.pushState(obj, '', url);
-const onPopState = (handler) => {
-  window.onpopstate = handler;
-};
-
-// const currentContent = () => {
-//   if (this.state.currentQuoteId) {
-//     return (
-//       <Quote
-//         {...this.currentQuote()}
-//         currentQuote={this.state.currentQuoteId}
-//         onHomeClick={this.fetchQuoteList}
-//         onRemoveQuote={this.removeQuote}
-//         onClick={this.fetchQuote}
-//       />
-//     );
-//   }
-// };
-
-// if (localStorage.jwtToken) {
-//   // Set auth token header auth
-//   const token = localStorage.jwtToken;
-//   api.setAuthToken(token);
-//   // Decode token and get user info and exp
-//   const decoded = jwt_decode(token);
-//   // Set user and isAuthenticated
-//   this.context.setCurrentUser(decoded);
-//   // Check for expired token
-//   const currentTime = Date.now() / 1000; // to get in milliseconds
-//   if (decoded.exp < currentTime) {
-//     // Logout user
-//     this.context.logoutUser();
-//     // Redirect to login
-//     window.location.href = './login';
-//   }
-// }
-
 const App = (props) => {
   const [state, updateState] = useState(props.initialData);
-
-  const addQuote = (who, what) => {
-    pushState({ currentQuoteId: null }, `/`);
-    api
-      .postNewQuote(who, what)
-      .then((newQuote) => {
-        this.setState({
-          quotes: {
-            ...state.quotes,
-            [newQuote._id]: newQuote,
-          },
-        });
-      })
-      .catch(console.error);
-  };
-
-  const removeQuote = (_id) => {
-    pushState({ currentQuoteId: null }, `/`);
-    api.removeQuote(_id).then((removedQuote) => {
-      console.log(state.quotes);
-      delete state.quotes[removedQuote._id];
-    });
-  };
 
   // const pageHeader = () => {
   //   if (state.currentQuoteId) {
@@ -136,31 +75,6 @@ const App = (props) => {
 //   //     });
 //   //   });
 //   // }
-
-//   // fetchQuote = (quoteId) => {
-//   //   pushState({ currentQuoteId: quoteId }, `/quote/${quoteId}`);
-//   //   // look up quote
-//   //   api.fetchQuote(quoteId).then((quote) => {
-//   //     this.setState({
-//   //       currentQuoteId: quote._id,
-//   //       quotes: {
-//   //         ...this.state.quotes,
-//   //         [quote._id]: quote,
-//   //       },
-//   //     });
-//   //   });
-//   // };
-
-//   // fetchQuoteList = () => {
-//   //   pushState({ currentQuoteId: null }, `/`);
-//   //   // look up quote
-//   //   api.fetchQuoteList().then((quoteList) => {
-//   //     this.setState({
-//   //       currentQuoteId: null,
-//   //       quotes: quoteList,
-//   //     });
-//   //   });
-//   // };
 
 //   // currentQuote() {
 //   //   return this.state.quotes[this.state.currentQuoteId];
