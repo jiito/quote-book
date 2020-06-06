@@ -6,10 +6,14 @@ import QuotePage from '../QuotePage';
 
 const PrivateRoute = ({ component: Component, auth, ...rest }) => {
   return (
-    <Route
-      {...rest}
-      render={(props) => (auth ? <Component {...props} /> : <Redirect to="/login" />)}
-    />
+    <UserConsumer>
+      {({ isAuthenticated }) => (
+        <Route
+          {...rest}
+          render={(props) => (isAuthenticated ? <Component {...props} /> : <Redirect to="/" />)}
+        />
+      )}
+    </UserConsumer>
   );
 };
 
