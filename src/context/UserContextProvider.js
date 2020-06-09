@@ -39,6 +39,7 @@ class UserContextProvider extends Component {
     // Set current user to empty object {} which will set isAuthenticated to false
     this.setState({
       user: {},
+      isAuthenticated: false,
     });
   };
 
