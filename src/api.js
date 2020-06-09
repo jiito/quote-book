@@ -11,8 +11,8 @@ export const fetchQuoteList = () => {
 };
 
 // FIX TO SEND USER ID
-export const postNewQuote = (who, what) => {
-  return axios.post(`/api/quotes`, { who, what }).then((resp) => resp.data);
+export const postNewQuote = (author, quote) => {
+  return axios.post(`/api/quotes`, { author, quote }).then((resp) => resp.data);
 };
 
 export const removeQuote = (_id) => {
