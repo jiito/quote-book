@@ -6,7 +6,6 @@ import FormInputError from '../FormInputError';
 import { UserContext } from '../../context/UserContext';
 
 const Login = (props) => {
-  const { onLogin, history } = props;
   const { register, errors, handleSubmit } = useForm();
 
   // read in context
