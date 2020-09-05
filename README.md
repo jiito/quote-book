@@ -17,7 +17,16 @@
 
 <p align="center"> A simple social web-app for sharing funny sayings. 
     <br> 
+ I built this undeployed app following many tutorials. I used a lot a lot of the following LinkedIn Leanring Tutorials for my learning.
 </p>
+
+### Tutorials
+* React.js Essential Training
+* Node.js Essential Training
+* Building RESTful APIs with Node.js and Express
+* Building a Website with Node.js and Express.js
+* Learning Full-Stack JavaScript Development: MongoDB, Node, and React
+
 
 ## 📝 Table of Contents
 
