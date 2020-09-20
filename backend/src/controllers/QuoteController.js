@@ -6,7 +6,7 @@ export const addNewQuote = (req, res) => {
   let { userId } = req.body;
 
   if (!userId) {
-    res.send({ error: 'please specify a use to add this quote to' });
+    return res.send({ error: 'please specify a user to add this quote to' });
   }
   // update the user object
   User.findOneAndUpdate(
@@ -15,7 +15,7 @@ export const addNewQuote = (req, res) => {
     { new: true, useFindAndModify: false },
     (err, updatedUser) => {
       if (err || !updatedUser) {
-        res.send(err);
+        return res.send(err);
       }
     },
   );
@@ -23,7 +23,7 @@ export const addNewQuote = (req, res) => {
   // save the new quote and respond with it
   newQuote.save((err, quote) => {
     if (err) {
-      res.send(err);
+      return res.send(err);
     }
     res.json(quote);
   });
@@ -32,7 +32,7 @@ export const addNewQuote = (req, res) => {
 export const getQuotes = (req, res) => {
   Quote.find({}, (err, quote) => {
     if (err) {
-      res.send(err);
+      return res.send(err);
     }
     res.json(quote);
   });
@@ -41,7 +41,7 @@ export const getQuotes = (req, res) => {
 export const getQuoteWithID = (req, res) => {
   Quote.findById(req.params.quoteID, (err, quote) => {
     if (err) {
-      res.send(err);
+      return res.send(err);
     }
     res.json(quote);
   });
@@ -54,7 +54,7 @@ export const updateQuote = (req, res) => {
     { new: true, useFindAndModify: false },
     (err, quote) => {
       if (err) {
-        res.send(err);
+        return res.send(err);
       }
       res.json(quote);
     },
