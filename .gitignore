@@ -104,5 +104,4 @@ dist
 .tern-port
 
 # webpack bundle
-
-./public/bundle.js
+public/bundle.js
