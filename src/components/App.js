@@ -39,7 +39,7 @@ const App = (props) => {
             <Router>
               {isAuthenticated ? <Redirect to="/quotes" /> : console.log(user)}
               <div className="App">
-                <Navigation />
+                {/* <Navigation /> */}
                 <Route exact path="/" component={Landing} />
                 <Route exact path="/login">
                   <Login history={window.history} onLogin={loginUser} />

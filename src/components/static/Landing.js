@@ -12,10 +12,10 @@ const Landing = () => {
       <div className=" row justify-content-center text-center">
         <div className="col-sm-4">
           <Link to="/register">
-            <button className="btn btn-primary btn-lg">Register</button>
+            <button className="btn btn-primary btn-lg mr-2">Register</button>
           </Link>
           <Link to="/login">
-            <button className="btn btn-outline-dark btn-lg">Log In</button>
+            <button className="btn btn-outline-dark btn-lg ml-2">Log In</button>
           </Link>
         </div>
       </div>
