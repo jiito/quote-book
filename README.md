@@ -17,7 +17,7 @@
 
 <p align="center"> A simple social web-app for sharing funny sayings. 
     <br> 
- I built this undeployed app following many tutorials. I used a lot a lot of the following LinkedIn Leanring Tutorials for my learning.
+ I built this undeployed app to practice Full-Stack WebDev. I used a lot a lot of the following LinkedIn Leanring Tutorials for my learning.
 </p>
 
 ### Tutorials
